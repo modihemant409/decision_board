@@ -181,11 +181,10 @@ exports.getAllTabs = async (req, res, next) => {
         { model: SheetTab, include: [{ model: Sheet, include: [SheetData] }] },
         {
           model: Dashboard,
-          attributes: [],
+          attributes: ["id", "banner_name"],
           include: [
             {
               model: Logo,
-              as: "banner",
               foreignKey: "bannerId",
             },
           ],
@@ -197,7 +196,9 @@ exports.getAllTabs = async (req, res, next) => {
       data: tabs,
       status: true,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };
 
 exports.addDashboardInfo = async (req, res, next) => {

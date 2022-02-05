@@ -147,7 +147,6 @@ exports.getDashboard = async (req, res, next) => {
         },
         {
           model: Logo,
-          as: "banner",
           foreignKey: "bannerId",
         },
       ],

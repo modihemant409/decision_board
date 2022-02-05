@@ -36,7 +36,7 @@ Dashboard.init(
 User.hasMany(Dashboard);
 Dashboard.belongsTo(User);
 
-Logo.hasOne(Dashboard, { as: "banner", foreignKey: "bannerId" });
-Dashboard.belongsTo(Logo, { as: "banner", foreignKey: "bannerId" });
+Logo.hasOne(Dashboard, { foreignKey: "bannerId" });
+Dashboard.belongsTo(Logo, { foreignKey: "bannerId" });
 
 module.exports = Dashboard;
