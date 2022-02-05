@@ -12,4 +12,5 @@ module.exports = {
   SharedDashboard: require("./sharedDashboards"),
   // userDb: require("./userDb"),
   Archive: require("./archive"),
+  ChartLayout: require("./chartLayout"),
 };

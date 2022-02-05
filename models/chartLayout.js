@@ -4,41 +4,32 @@ const Sheet = require("./Sheet");
 const SheetTab = require("./SheetTabs");
 const Tab = require("./Tab");
 
-class Chart extends Model {}
+class ChartLayout extends Model {}
 
-Chart.init(
+ChartLayout.init(
   {
     // Model attributes are defined here
-    chart_data: {
+    layout_data: {
       type: DataTypes.TEXT,
       allowNull: false,
       set(value) {
-        return this.setDataValue("chart_data", JSON.stringify(value));
+        return this.setDataValue("ChartLayout_data", JSON.stringify(value));
       },
       get() {
-        const rawValue = this.getDataValue("chart_data");
+        const rawValue = this.getDataValue("ChartLayout_data");
         return rawValue ? JSON.parse(rawValue) : null;
       },
-    },
-    comment: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    index: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
     },
   },
   {
     // Other model options go here
     sequelize: connection, // We need to pass the connection instance
-    modelName: "charts", // We need to choose the model name
-    tableName: "charts",
+    modelName: "chartLayouts", // We need to choose the model name
+    tableName: "chartLayouts",
   }
 );
 
-Tab.hasMany(Chart);
-Chart.belongsTo(Tab);
+Tab.hasOne(ChartLayout);
+ChartLayout.belongsTo(Tab);
 
-module.exports = Chart;
+module.exports = ChartLayout;

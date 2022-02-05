@@ -7,6 +7,7 @@ const {
   Chart,
   SheetTab,
   Tab,
+  ChartLayout,
 } = require("../models");
 const { UploadFile, removeFile } = require("../helper/File");
 const helper = require("../helper/functions");
@@ -218,9 +219,11 @@ exports.addChart = async (req, res, next) => {
   try {
     await schema.validateAsync(req.body);
     const { tabId, chart_data } = req.body;
+    const chartCount = await Chart.count({ where: { tabId: tabId } });
     const chart = await Chart.create({
       tabId,
       chart_data: chart_data,
+      index: chartCount + 1,
     });
     return res.send({ message: "chart added", status: true, data: chart });
   } catch (error) {
@@ -277,6 +280,51 @@ exports.addComment = async (req, res, next) => {
     );
     helper.dataNotFound(result[0], "Unable to add comment", 409);
     return res.send({ message: "Comment Added", status: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteChart = async (req, res, next) => {
+  try {
+    const chart = await Chart.findOne({ where: { id: req.params.chartId } });
+    helper.dataNotFound(chart, "invalid chart", 404);
+    await chart.destroy();
+    return res.send({ message: "success", status: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.setChartIndex = async (req, res, next) => {
+  try {
+    const chartIndex = req.body.indexing;
+    for (const key in chartIndex) {
+      await Chart.update({ index: chartIndex[key] }, { where: { id: key } });
+    }
+    return res.send({ message: "Index changed successfully", status: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.addTabLayout = async (req, res, next) => {
+  try {
+    const { tabId, layout } = req.body;
+    const chart_layout = await ChartLayout.findOne({ where: { tabId } });
+    let newLayout;
+    if (chart_layout) {
+      newLayout = await ChartLayout.update(
+        { layout_data: layout },
+        { where: { tabId } }
+      );
+    } else {
+      newLayout = await ChartLayout.create({
+        layout_data: chart_layout,
+        tabId,
+      });
+    }
+    return res.send({ message: "layout updated", status: true });
   } catch (error) {
     next(error);
   }
