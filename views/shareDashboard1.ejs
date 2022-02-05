@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decision Board</title>
+  </head>
+  <body>
+    <div align="center" style="padding: 0px 15px">
+      <table
+        cellpadding="0"
+        cellspacing="0"
+        style="border: 0; width: 90%; max-width: 780px"
+      >
+        <tbody>
+          <tr style="background: #364953">
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td style="width: 100%; height: 15px"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p
+                style="
+                  color: #f7f8f9;
+                  font-family: Helvetica;
+                  font-size: 28px;
+                  font-weight: 400;
+                  text-align: center;
+                "
+              >
+                Take a look at your report!
+              </p>
+              <table>
+                <tbody>
+                  <tr>
+                    <td style="width: 100%; height: 15px"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://ci4.googleusercontent.com/proxy/QwcTgLaoKWs2zgCuSBI1lq8wic9vIpGeE1ODL7xwRmmiEYUlKZs2nrPJzkqMKLWIzEzpeAG0zV8AX4s6YJEUCJRDT8j4LXAd_zXRhq_XZb0GcN3W3tFQ=s0-d-e1-ft#https://dashthis.blob.core.windows.net/mails/header_illustration.jpg"
+                alt="Postbox"
+                style="display: block; width: 100%"
+                class="CToWUd a6T"
+                tabindex="0"
+              />
+              <div
+                class="a6S"
+                dir="ltr"
+                style="opacity: 0.01; left: 902px; top: 455.9px"
+              >
+                <div
+                  id=":p1"
+                  class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q"
+                  role="button"
+                  tabindex="0"
+                  aria-label="Download attachment "
+                  data-tooltip-class="a1V"
+                  data-tooltip="Download"
+                >
+                  <div class="akn"><div class="aSK J-J5-Ji aYr"></div></div>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr style="background: #f7f8f9">
+            <td style="padding: 0 10% 40px">
+              <table
+                cellpadding="0"
+                cellspacing="0"
+                style="border-spacing: 0 0.8em; width: 100%"
+              >
+                <tbody>
+                  <tr>
+                    <td>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td style="width: 100%; height: 15px"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p
+                        style="
+                          color: #728087;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.4;
+                        "
+                      >
+                        Hi,
+                      </p>
+                      <p
+                        style="
+                          color: #728087;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.4;
+                        "
+                      >
+                        Here are your latest marketing results!
+                      </p>
+                      <p
+                        style="
+                          color: #728087;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.4;
+                        "
+                      >
+                        Your report’s name:
+                        <span style="color: #283840; font-weight: 600"
+                          ><%= reportName %>
+                        </span>
+                      </p>
+                      <p
+                        style="
+                          color: #728087;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.4;
+                        "
+                      >
+                        The date range for your results:
+                        <span style="color: #283840; font-weight: 600"
+                          ><%= fromDate %>
+                        </span>
+                        to
+                        <span style="color: #283840; font-weight: 600"
+                          ><%= toDate %>
+                        </span>
+                      </p>
+
+                      <p
+                        style="
+                          color: #728087;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.8;
+                        "
+                      >
+                        The administrator of the report has included a quick
+                        note for you as well:
+                      </p>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td style="width: 100%; height: 15px"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <tr style="background: #fff">
+                    <td
+                      style="
+                        padding: 20px 40px 20px 35px;
+                        border-left: 5px solid #37b99c;
+                      "
+                    >
+                      <p></p>
+                      <pre
+                        style="
+                          color: #283840;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.8;
+                        "
+                      >
+<%= note %> </pre
+                      >
+                      <p></p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td style="width: 100%; height: 15px"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <center style="width: 100%; min-width: none !important">
+                        <a href=<%= link %>
+                          type="button"
+                          name="m_6439276829017041676_m_-3808975156510794048_button"
+                          style=" padding: 15px 40px; background: #37b99c;
+                          border-radius: 50px; color: #f7f8f9; display: block;
+                          font-family: Helvetica; font-size: 16px; font-weight:
+                          600; text-align: center; text-decoration: none;
+                          text-transform: uppercase; width: 180px; "
+                          target="_blank"
+                          data-saferedirecturl="https://www.google.com/url?q=http://url821.dashthis.com/ls/click?upn%3D6RVtaxgWPOBewfOjc5M8ahMsPw0MfVY0FfDrD4JwXlZ9gSCsX33l1Z5aEDFoipmAYXJAY-2FnoHabT72d8GMDHKwmSPYGEFTKvtWo0Cqr5AxjJRkrQZN1R1tSPiVjwdf5D2nKM9U6-2BVQePN9gamRWWHBknO4Id-2B9yz9mpci80ompjPEaBrcICyakKluy6azjstzR8nQnQ9Zv9iX3Lr-2FLh6TBw65dMED64tWtFSL-2FExljM-3DjI8t_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmklot2o6K7LUMuYuuhkhcyewq4k7Pd3pRoq0THCcsxOM8PtIy1MNA1Tau2bErbdxe1JWlsyYHvrCWlg-2FJVHd1TB11Kgce1qJ6KWaxkS3dyz9LfDuOx5fY9pC30NCJQ0JoS-2BTJ3ayEaV5p-2FHcQNBeqwk-3D&amp;source=gmail&amp;ust=1640938053599000&amp;usg=AOvVaw3HRjv8xd4Ng4CIAm2RgKoF"
+                          >See your report</a
+                        >
+                      </center>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td style="width: 100%; height: 15px"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <p
+                        style="
+                          color: #728087;
+                          font-family: Helvetica;
+                          font-size: 16px;
+                          font-weight: 400;
+                          line-height: 1.8;
+                          text-align: center;
+                        "
+                      >
+                        If you want, you can also
+                        <a
+                          href="http://url821.dashthis.com/ls/click?upn=6RVtaxgWPOBewfOjc5M8ahMsPw0MfVY0FfDrD4JwXlZ9gSCsX33l1Z5aEDFoipmAYXJAY-2FnoHabT72d8GMDHKwmSPYGEFTKvtWo0Cqr5AxhkzmguPyQazmAig0gsdLjvWGzC-2BGSplTt8Gx0LuU1IeyahpxTt1FbEv-2BVs1kCCfB5J-2FqEil0hFnqY4-2FkcQwk-2FbctFG0CibxpCWcp5fy-2BEbbAv2JKqbuVdqviIvGEXHuUwgtzfpbcV2V9iK6kIBkbuBHdAh_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmoMkUdRAg22NhIj0jkANlJ1k-2Fe7v78m4-2BGHy0dVXCaBu0At0q09a4OAzyY7HaT4rCWG0md641yAG-2FbBkT-2BlGroXlkpazZd1ziMvXtl8l-2BOON4vebcOzyU0YLdIOnqHsJPI8r8DfMM-2Fw-2BycTGjHRwohc-3D"
+                          target="_blank"
+                          data-saferedirecturl="https://www.google.com/url?q=http://url821.dashthis.com/ls/click?upn%3D6RVtaxgWPOBewfOjc5M8ahMsPw0MfVY0FfDrD4JwXlZ9gSCsX33l1Z5aEDFoipmAYXJAY-2FnoHabT72d8GMDHKwmSPYGEFTKvtWo0Cqr5AxhkzmguPyQazmAig0gsdLjvWGzC-2BGSplTt8Gx0LuU1IeyahpxTt1FbEv-2BVs1kCCfB5J-2FqEil0hFnqY4-2FkcQwk-2FbctFG0CibxpCWcp5fy-2BEbbAv2JKqbuVdqviIvGEXHuUwgtzfpbcV2V9iK6kIBkbuBHdAh_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmoMkUdRAg22NhIj0jkANlJ1k-2Fe7v78m4-2BGHy0dVXCaBu0At0q09a4OAzyY7HaT4rCWG0md641yAG-2FbBkT-2BlGroXlkpazZd1ziMvXtl8l-2BOON4vebcOzyU0YLdIOnqHsJPI8r8DfMM-2Fw-2BycTGjHRwohc-3D&amp;source=gmail&amp;ust=1640938053600000&amp;usg=AOvVaw1tdKQeucswqPlR1CXuFYky"
+                          >share this report</a
+                        >
+                        with your colleagues easily!
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 20px">
+              <table
+                cellpadding="0"
+                cellspacing="0"
+                style="width: 100%; border: 0"
+              >
+                <tbody>
+                  <tr style="height: 80px">
+                    <td align="right" style="width: 50%">
+                      <a
+                        href="http://url821.dashthis.com/ls/click?upn=6RVtaxgWPOBewfOjc5M8aiOTF8Zct-2F2zO-2Fuyu-2BGwxjye7ZPPNntBttC7vqjWCTpGreQGecHWG8Paw0J1kbtjQcO-2FQ7LgR2-2F2WqXMukDx9E13-2Fl0Y9klEBFrzzpSD5p7uGoPd_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmq2epi-2BE1Pxd0OZ0bjVgOqa4wLckq-2BXiuy-2BHsvn5yuhF-2B9c4yPMen-2BVTZzsXv8MgO3sTzNYZZ37yfgVZaHfCKphgWpQkaX17myCZmQPW9bnpv-2BwTWNZNVZqJUgH2coarxj0l-2F-2FWZjLiCoaBMCZhLvTk-3D"
+                        target="_blank"
+                        data-saferedirecturl="https://www.google.com/url?q=http://url821.dashthis.com/ls/click?upn%3D6RVtaxgWPOBewfOjc5M8aiOTF8Zct-2F2zO-2Fuyu-2BGwxjye7ZPPNntBttC7vqjWCTpGreQGecHWG8Paw0J1kbtjQcO-2FQ7LgR2-2F2WqXMukDx9E13-2Fl0Y9klEBFrzzpSD5p7uGoPd_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmq2epi-2BE1Pxd0OZ0bjVgOqa4wLckq-2BXiuy-2BHsvn5yuhF-2B9c4yPMen-2BVTZzsXv8MgO3sTzNYZZ37yfgVZaHfCKphgWpQkaX17myCZmQPW9bnpv-2BwTWNZNVZqJUgH2coarxj0l-2F-2FWZjLiCoaBMCZhLvTk-3D&amp;source=gmail&amp;ust=1640938053600000&amp;usg=AOvVaw0sH6J-F8hybl1AGmBsjR5J"
+                      >
+                        <img
+                          src="https://ci3.googleusercontent.com/proxy/ICLtrJLhMD9yLjDtm3jzzMRcSstklGO11Co84owWaALeM0N4Zu2IS-EdkOpD0TvP67ysukUhuj4zw_q5lPr0bosbGgDwufSYHJb_0ekw351r=s0-d-e1-ft#https://dashthis.blob.core.windows.net/mails/logo_dashthis.png"
+                          alt="DashThis"
+                          class="CToWUd"
+                        />
+                      </a>
+                    </td>
+                    <td align="left" style="width: 50%; padding: 5px 0 0 25px">
+                      <a
+                        href="http://url821.dashthis.com/ls/click?upn=6RVtaxgWPOBewfOjc5M8anuhJ3-2Blda1opmublGKJQbhxIS8BVhL88agQ1LYGUGHxwt2G_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmldu7A-2BnMa-2BpUqibk39jNt8GfDAgx3krQglLN3O1By3pj0P-2BwtL4hQGrCJhf6eHb5ckUP5GKIponMheMRbJ3yIO-2BMqDaXjD7u92Mg7ML6cbym8MXcKsgFv4uA8uVxdZ7VSJ-2FTCYiIX5N5Ptzq9HdR1I-3D"
+                        style="display: inline-block; margin: 0 2px"
+                        target="_blank"
+                        data-saferedirecturl="https://www.google.com/url?q=http://url821.dashthis.com/ls/click?upn%3D6RVtaxgWPOBewfOjc5M8anuhJ3-2Blda1opmublGKJQbhxIS8BVhL88agQ1LYGUGHxwt2G_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmldu7A-2BnMa-2BpUqibk39jNt8GfDAgx3krQglLN3O1By3pj0P-2BwtL4hQGrCJhf6eHb5ckUP5GKIponMheMRbJ3yIO-2BMqDaXjD7u92Mg7ML6cbym8MXcKsgFv4uA8uVxdZ7VSJ-2FTCYiIX5N5Ptzq9HdR1I-3D&amp;source=gmail&amp;ust=1640938053600000&amp;usg=AOvVaw1MZAUZ7PpEQDfY2XSSg5f4"
+                      >
+                        <img
+                          src="https://ci5.googleusercontent.com/proxy/FoXwu6dGXJRyWcqZIpVLuXjRqpF-GwVob_LPy6udJpx_0nRxDN4H6M2gruXI_Nq8RIuBmK8ptsAg0PNcKk7NmYLap3GyT6FdF6T_Z1p0VSsufz8=s0-d-e1-ft#https://dashthis.blob.core.windows.net/mails/social_facebook.png"
+                          style="
+                            opacity: 0.2;
+                            width: 25px;
+                            height: 25px;
+                            display: block;
+                          "
+                          class="CToWUd"
+                        />
+                      </a>
+                      <a
+                        href="http://url821.dashthis.com/ls/click?upn=6RVtaxgWPOBewfOjc5M8aoEZnkVV-2BjvRFYUHUqmY0YYoSeNrOW8WgGGRj269HQbkq9qB_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmueH5-2BRhj-2BYvGln9XUlOJe42zrj1VAnhy9MxYcvkK6B19ZmymIIBOS935jmHDRgrkqG2ZXdWIoUpa6p5-2B7rzlweDbymIx9me5UzW8hVlUiJCQZawE7ecFzj6fj684wj35rq2zHmE4PZwXhjBkjslPAI-3D"
+                        style="display: inline-block; margin: 0 2px"
+                        target="_blank"
+                        data-saferedirecturl="https://www.google.com/url?q=http://url821.dashthis.com/ls/click?upn%3D6RVtaxgWPOBewfOjc5M8aoEZnkVV-2BjvRFYUHUqmY0YYoSeNrOW8WgGGRj269HQbkq9qB_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmueH5-2BRhj-2BYvGln9XUlOJe42zrj1VAnhy9MxYcvkK6B19ZmymIIBOS935jmHDRgrkqG2ZXdWIoUpa6p5-2B7rzlweDbymIx9me5UzW8hVlUiJCQZawE7ecFzj6fj684wj35rq2zHmE4PZwXhjBkjslPAI-3D&amp;source=gmail&amp;ust=1640938053600000&amp;usg=AOvVaw1koitSeyAQSV_4v4Mq3vnr"
+                      >
+                        <img
+                          src="https://ci6.googleusercontent.com/proxy/osmyiYAgJRWRRrCeHJwMbC9pFkafmjptXwPdMEwzE6pfwUxpo9L2VUytI4ZPnyXmALbyQB_yLQciqDL8Eib2wR7ThAq3noNfCmFLTwrCla57uA=s0-d-e1-ft#https://dashthis.blob.core.windows.net/mails/social_twitter.png"
+                          style="
+                            opacity: 0.2;
+                            width: 25px;
+                            height: 25px;
+                            display: block;
+                          "
+                          class="CToWUd"
+                        />
+                      </a>
+                      <a
+                        href="http://url821.dashthis.com/ls/click?upn=6RVtaxgWPOBewfOjc5M8amhfrguZbYyapsfTCj4bQ6aG3GHhErymqX8HELcFusszLv4Kylo-2BUU57FCNhT5fB6g-3D-3DUYZH_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmnXYxahcf1Nng6oI9-2FM4f1SLkCKZz828X8uTUTTk0UouM44cdcaR-2FHgw1rdiI9y6BJ1DwToHM-2B4crY5eN7ovLPWLOSHhzQFy9n6OX0q0xT-2B59p-2FgqXcn0xZXrIEGbSWjlFVCKUHdBmPxlXavcWTnViA-3D"
+                        style="display: inline-block; margin: 0 2px"
+                        target="_blank"
+                        data-saferedirecturl="https://www.google.com/url?q=http://url821.dashthis.com/ls/click?upn%3D6RVtaxgWPOBewfOjc5M8amhfrguZbYyapsfTCj4bQ6aG3GHhErymqX8HELcFusszLv4Kylo-2BUU57FCNhT5fB6g-3D-3DUYZH_K2BCIFrTcv-2Bmx3RfRD5xADXf3MWl30RWeqAGatC2MFRSIGwf-2F8nJbLiwNyT2GHSGCEattc1fAChLqLKJjFSXmnXYxahcf1Nng6oI9-2FM4f1SLkCKZz828X8uTUTTk0UouM44cdcaR-2FHgw1rdiI9y6BJ1DwToHM-2B4crY5eN7ovLPWLOSHhzQFy9n6OX0q0xT-2B59p-2FgqXcn0xZXrIEGbSWjlFVCKUHdBmPxlXavcWTnViA-3D&amp;source=gmail&amp;ust=1640938053600000&amp;usg=AOvVaw1_TwwohbAV-en_jGYalrTD"
+                      >
+                        <img
+                          src="https://ci6.googleusercontent.com/proxy/pHKhdtmGwLU5EnR3Q_e_D55HeWv22OUuRxBaBJCW_ZUOkZnYEU--bFVFgY18ItDD91mKjQwCQ3RrB21IMDIVv8d3XMhkGGlPFdujXePmKQ_EXqM=s0-d-e1-ft#https://dashthis.blob.core.windows.net/mails/social_linkedin.png"
+                          style="
+                            opacity: 0.2;
+                            width: 25px;
+                            height: 25px;
+                            display: block;
+                          "
+                          class="CToWUd"
+                        />
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <p
+                        style="
+                          margin: 8px 0;
+                          color: #728087;
+                          font-family: Helvetica, sans-serif;
+                          font-size: 12px;
+                          font-weight: 400;
+                          line-height: 1.8;
+                          text-align: center;
+                        "
+                      >
+                        Your report was created with DashThis, an easy-to-use
+                        marketing reporting software for marketers &amp;
+                        agencies.
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
