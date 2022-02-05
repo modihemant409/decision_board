@@ -10,7 +10,7 @@ router.get("/getSheets/:dashboardId", auth, SheetController.getSheet);
 router.post("/addTab", auth, SheetController.addTab);
 router.post("/addSheetInTab", auth, SheetController.addSheetInTab);
 router.delete("/removeSheetFromTab", auth, SheetController.removeSheetFromTab);
-router.post("/addTabInfo", auth, SheetController.addTabInfo);
+router.post("/addDashboardInfo", auth, SheetController.addDashboardInfo);
 router.get("/getAllTabs/:dashboardId", auth, SheetController.getAllTabs);
 router.get("/getCharts/:tabId", auth, SheetController.getCharts);
 router.post("/addChart", auth, SheetController.addChart);
@@ -18,6 +18,7 @@ router.put("/updateChart", auth, SheetController.updateChart);
 router.post("/addComment", auth, SheetController.addComment);
 router.post("/add-layout", auth, SheetController.addTabLayout);
 router.post("/set-chart-indexing", auth, SheetController.setChartIndex);
-router.delete("/delete-chart", auth, SheetController.deleteChart);
+router.delete("/delete-chart/:chartId", auth, SheetController.deleteChart);
+router.get("/get-chart-layout/:tabId", auth, SheetController.getChartLayout);
 
 module.exports = router;

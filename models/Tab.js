@@ -8,10 +8,6 @@ class Tab extends Model {}
 
 Tab.init(
   {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     label: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,8 +29,5 @@ Dashboard.hasMany(Tab), Tab.belongsTo(Dashboard);
 
 Logo.hasMany(Tab, { as: "logo", foreignKey: "logoId" });
 Tab.belongsTo(Logo, { as: "logo", foreignKey: "logoId" });
-
-Logo.hasMany(Tab, { as: "banner", foreignKey: "bannerId" });
-Tab.belongsTo(Logo, { as: "banner", foreignKey: "bannerId" });
 
 module.exports = Tab;

@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes, Model } = require("sequelize");
 const User = require("./User");
 const connection = require("../db/connection");
+const Logo = require("./Logo");
 
 class Dashboard extends Model {}
 
@@ -19,6 +20,10 @@ Dashboard.init(
       type: DataTypes.ENUM("month", "year", "week"),
       allowNull: false,
     },
+    banner_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     // Other model options go here
@@ -30,4 +35,8 @@ Dashboard.init(
 
 User.hasMany(Dashboard);
 Dashboard.belongsTo(User);
+
+Logo.hasOne(Dashboard, { as: "banner", foreignKey: "bannerId" });
+Dashboard.belongsTo(Logo, { as: "banner", foreignKey: "bannerId" });
+
 module.exports = Dashboard;

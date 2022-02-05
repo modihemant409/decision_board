@@ -145,6 +145,11 @@ exports.getDashboard = async (req, res, next) => {
           where: { userId: req.userId },
           required: false,
         },
+        {
+          model: Logo,
+          as: "banner",
+          foreignKey: "bannerId",
+        },
       ],
       attributes: { exclude: ["password", "userId"] },
     });

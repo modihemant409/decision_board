@@ -178,8 +178,18 @@ exports.getAllTabs = async (req, res, next) => {
       where: { dashboardId: req.params.dashboardId },
       include: [
         { model: Logo, as: "logo", foreignKey: "logoId" },
-        { model: Logo, as: "banner", foreignKey: "bannerId" },
         { model: SheetTab, include: [{ model: Sheet, include: [SheetData] }] },
+        {
+          model: Dashboard,
+          attributes: [],
+          include: [
+            {
+              model: Logo,
+              as: "banner",
+              foreignKey: "bannerId",
+            },
+          ],
+        },
       ],
     });
     return res.send({
@@ -190,22 +200,24 @@ exports.getAllTabs = async (req, res, next) => {
   } catch (error) {}
 };
 
-exports.addTabInfo = async (req, res, next) => {
+exports.addDashboardInfo = async (req, res, next) => {
   const schema = joi.object({
     bannerId: joi.number().required(),
     name: joi.string().required(),
-    tabId: joi.number().required(),
+    dashboardId: joi.number().required(),
   });
   try {
     await schema.validateAsync(req.body);
-    const tab = await Tab.findOne({ where: { id: req.body.tabId } });
+    const dashboard = await Dashboard.findOne({
+      where: { id: req.body.dashboardId },
+    });
 
-    helper.dataNotFound(tab, "Invalid Tab", 404);
-    tab.name = req.body.name;
-    tab.bannerId = req.body.bannerId;
-    await tab.save();
-    await tab.reload();
-    return res.send({ message: "success", status: true, data: tab });
+    helper.dataNotFound(dashboard, "Invalid Tab", 404);
+    dashboard.banner_name = req.body.name;
+    dashboard.bannerId = req.body.bannerId;
+    await dashboard.save();
+    await dashboard.reload();
+    return res.send({ message: "success", status: true, data: dashboard });
   } catch (error) {
     next(error);
   }
@@ -223,7 +235,7 @@ exports.addChart = async (req, res, next) => {
     const chart = await Chart.create({
       tabId,
       chart_data: chart_data,
-      index: chartCount + 1,
+      indexes: chartCount + 1,
     });
     return res.send({ message: "chart added", status: true, data: chart });
   } catch (error) {
@@ -256,6 +268,7 @@ exports.getCharts = async (req, res, next) => {
   try {
     const charts = await Chart.findAll({
       where: { tabId: req.params.tabId },
+      order: [["indexes", "ASC"]],
     });
     return res.send({
       message: "fetched successfully",
@@ -300,7 +313,7 @@ exports.setChartIndex = async (req, res, next) => {
   try {
     const chartIndex = req.body.indexing;
     for (const key in chartIndex) {
-      await Chart.update({ index: chartIndex[key] }, { where: { id: key } });
+      await Chart.update({ indexes: chartIndex[key] }, { where: { id: key } });
     }
     return res.send({ message: "Index changed successfully", status: true });
   } catch (error) {
@@ -320,11 +333,22 @@ exports.addTabLayout = async (req, res, next) => {
       );
     } else {
       newLayout = await ChartLayout.create({
-        layout_data: chart_layout,
+        layout_data: layout,
         tabId,
       });
     }
     return res.send({ message: "layout updated", status: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getChartLayout = async (req, res, next) => {
+  try {
+    const layout = await ChartLayout.findOne({
+      where: { tabId: req.params.tabId },
+    });
+    return res.send({ message: "fetched", data: layout, status: true });
   } catch (error) {
     next(error);
   }

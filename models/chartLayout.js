@@ -13,10 +13,10 @@ ChartLayout.init(
       type: DataTypes.TEXT,
       allowNull: false,
       set(value) {
-        return this.setDataValue("ChartLayout_data", JSON.stringify(value));
+        return this.setDataValue("layout_data", JSON.stringify(value));
       },
       get() {
-        const rawValue = this.getDataValue("ChartLayout_data");
+        const rawValue = this.getDataValue("layout_data");
         return rawValue ? JSON.parse(rawValue) : null;
       },
     },

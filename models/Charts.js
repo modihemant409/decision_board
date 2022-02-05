@@ -24,10 +24,10 @@ Chart.init(
       type: DataTypes.TEXT,
       allowNull: true,
     },
-    index: {
+    indexes: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0,
+      defaultValue: 1,
     },
   },
   {
