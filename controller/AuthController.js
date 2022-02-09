@@ -84,44 +84,6 @@ exports.socialLogin = async (req, res, next) => {
 };
 
 exports.signUp = async (req, res, next) => {
-  const {name,email} = req.body;
-  let password = req.body;
-  try {
-    const schema = joi.object({
-      name: joi.string().min(3).required(),
-      email: joi.string().email().required(),
-      password: joi.string().min(6).required(),
-    }).options({ allowUnknown: true })
-    
-    const { error } = schema.validate(req.body)
-    if (error) {
-      return res.status(400).send(error.details[0])
-    }
-  
-    password = await bcrypt.hash(password, 12)
-
-    const Email = await User.findOne({ where: { email: email } })
-    if (Email) {
-      const error = new Error('Email already exist')
-      error.statuscode = 409
-      throw error
-    }
-    const user = await User.create(create);
-    res.status(200).json({
-      msg: "New User Created & Email has been Sent",
-      status: true,
-      user : user
-    })
-  }
-  catch (err) {
-    if (!err.statusCode) {
-      err.statusCode = 500
-    }
-    next(err)
-  }
-}
-
-exports.signUp = async (req, res, next) => {
   let { name, email, password, type } = req.body;
   try {
     const schema = joi.object({
@@ -165,7 +127,7 @@ exports.login = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const schema = joi.object({
-      email: joi.string().required(),
+      email: joi.string().required().email(),
       password: joi.string().min(6).required()
     })
     const { error } = schema.validate(req.body)
@@ -213,28 +175,13 @@ exports.login = async (req, res, next) => {
   }
 }
 
-// exports.editProfile = async (req,res,next)=>{
-//   const{name,email} = req.body
-//   let image = req.body;
-//   const user = await User.findOne({where:{id:req.userId}})
-//   if(!user){
-//     return res.status(404).send({message:"No User Found"})
-//   }
-//     user.email = email,
-//     user.name = name,
-//     user.image =image
-//   user.save()
-//   res.status(200).send({
-//     msg:"user updated",
-//     user :user
-//   })
-// }
 
 exports.editProfile = async (req, res, next) => {
   const { name, email, image } = req.body
   try {
   const schema = joi.object({
-      name: joi.string().min(3).max(30),
+      name: joi.string().min(3).required(),
+      email:joi.email().required()
   }).options({ allowUnknown: true })
 
   const { error } = schema.validate(req.body)
