@@ -11,7 +11,6 @@ const options = {
   cert: fs.readFileSync("./certificate.pem"),
   // ca : fs.readFileSync("./caBundle.pem")
 };
-
 const db = require("./db/connection");
 //models and routes
 const models = require("./models");
