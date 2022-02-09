@@ -26,4 +26,6 @@ router.delete(
   auth,
   UserController.removeFromArchive
 );
+router.post("/send-message", auth, UserController.sendMessageToAdmin);
+router.get("/get-messages", auth, UserController.getAllMessage);
 module.exports = router;

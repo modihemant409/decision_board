@@ -1,9 +1,16 @@
 const express = require("express");
 const app = express();
-
-require("dotenv").config();
+const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const https = require("https"),
+  fs = require("fs");
+
+const options = {
+  key: fs.readFileSync("./key.pem"),
+  cert: fs.readFileSync("./certificate.pem"),
+  // ca : fs.readFileSync("./caBundle.pem")
+};
 
 const db = require("./db/connection");
 //models and routes
@@ -54,7 +61,8 @@ app.use((error, req, res, next) => {
 db.sync()
   // db.sync({ alter: true })
   .then((result) => {
-    Server = app.listen(process.env.PORT, (e) => {
+    // Server = app.listen(process.env.PORT, (e) => {
+      https.createServer(options, app).listen(process.env.PORT, (e) => {
       console.log("server is listening on " + process.env.PORT + " port");
     });
   })

@@ -13,4 +13,5 @@ module.exports = {
   // userDb: require("./userDb"),
   Archive: require("./archive"),
   ChartLayout: require("./chartLayout"),
+  ChatMessage: require("./chatMessage"),
 };
