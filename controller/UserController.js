@@ -1,4 +1,6 @@
 const joi = require("joi");
+
+const { UploadFile } = require("../helper/File");
 const { dataNotFound } = require("../helper/functions");
 const {
   UserPlan,
@@ -7,6 +9,7 @@ const {
   User,
   Dashboard,
   Archive,
+  ChatMessage,
 } = require("../models");
 
 exports.purchasePlan = async (req, res, next) => {
@@ -123,6 +126,45 @@ exports.getArchivedDashboards = async (req, res, next) => {
       message: "fetched successfully",
       data: archived,
       status: true,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.sendMessageToAdmin = async (req, res, next) => {
+  try {
+    const { body, file } = await UploadFile(req, "chatMessage");
+    const create = {};
+    for (const key in body) {
+      create[key] = body[key];
+    }
+    if (body.type != "text") {
+      create["message"] = body.type != "text" ? file.path : body.message;
+    }
+    create["from"] = "user";
+    create['userId']=req.userId
+    const chat = await ChatMessage.create(create);
+    return res.send({
+      status: true,
+      message: "Message sent successfully",
+      data: chat,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getAllMessage = async (req, res, next) => {
+  try {
+    const message = await ChatMessage.findAll({
+      where: { userId: req.userId },
+      order: [["createdAt", "desc"]],
+    });
+    return res.send({
+      status: true,
+      message: "fetched successfully",
+      data: message,
     });
   } catch (error) {
     next(error);

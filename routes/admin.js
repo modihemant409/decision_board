@@ -28,5 +28,14 @@ router.get(
   adminAuth,
   AdminController.BlockUnblockUser
 );
-
+router.delete(
+  "/remove-from-shared-dashboard/:userId",
+  Auth,
+  adminAuth,
+  AdminController.removeFromShared
+);
+router.get("/get-dashboard", Auth, adminAuth, AdminController.getDashboard);
+router.post("/send-message", Auth, adminAuth, AdminController.sendMessageToUser);
+router.get("/get-all-sender", Auth, adminAuth, AdminController.getAllSender);
+router.get("/get-message/:userId", Auth, adminAuth, AdminController.getAllMessage);
 module.exports = router;

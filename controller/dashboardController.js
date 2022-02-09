@@ -283,8 +283,11 @@ exports.openSharedDashboard = async (req, res, next) => {
             { model: SheetTab, include: [Sheet] },
             { model: Chart },
             { model: Logo, as: "logo", foreignKey: "logoId" },
-            { model: Logo, as: "banner", foreignKey: "bannerId" },
           ],
+        },
+        {
+          model: Logo,
+          foreignKey: "bannerId",
         },
       ],
     });
