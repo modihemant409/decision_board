@@ -233,7 +233,6 @@ exports.login = async (req, res, next) => {
 exports.editProfile = async (req, res, next) => {
   const { name, email, image } = req.body
   try {
-
   const schema = joi.object({
       name: joi.string().min(3).max(30),
   }).options({ allowUnknown: true })
