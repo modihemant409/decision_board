@@ -11,7 +11,6 @@ const options = {
   cert: fs.readFileSync("./certificate.pem"),
   // ca : fs.readFileSync("./caBundle.pem")
 };
-
 const db = require("./db/connection");
 //models and routes
 const models = require("./models");
@@ -34,6 +33,7 @@ app.use("/api/v1/auth", Routes.auth);
 app.use("/api/v1/dashboard", Routes.dashboard);
 app.use("/api/v1/sheet", Routes.sheet);
 app.use("/api/v1/admin", Routes.admin);
+
 
 models.Logo.findOne({ where: { id: 1 } })
   .then((logo) => {
