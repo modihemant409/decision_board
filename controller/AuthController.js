@@ -177,26 +177,24 @@ exports.login = async (req, res, next) => {
 
 
 exports.editProfile = async (req, res, next) => {
-  const { name, email, image } = req.body
   try {
-  const schema = joi.object({
-      name: joi.string().min(3).required(),
-      email:joi.email().required()
-  }).options({ allowUnknown: true })
-
-  const { error } = schema.validate(req.body)
-  if (error) {
+    const {file } = await UploadFile(req, "images");
+    let image = req.body.image
+    const schema = joi.object({
+      name: joi.string().required(),
+      email: joi.string().required().email()
+    }).options({ allowUnknown: true })
+    
+    const { error } = schema.validate(req.body)
+    if (error) {
       return res.status(400).send(error.details[0])
-  }
-
-  if (req.file) {
-      image = req.file.path.replace("\\", "/")
-  }
+    }
+    console.log(file)
       const data = await User.findOne({ where: { id: req.userId } })
-      // if (image !== data.image) {
-      //     // clearImage(data.image)
-      // }
-      const user = await data.update({ name: name, image: image, email: email })
+      if (image !== data.image) {
+          removeFile(data.image)
+      }
+      const user = await data.update({ name: req.body.name, image: file.path, email: req.body.email })
       res.status(200).json({ status: true, message: "User updated Successfully  ", user: user });
   }
   catch (err) {
