@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const dotenv = require("dotenv");
+require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
 
@@ -27,6 +27,7 @@ app.use("/api/v1/auth", Routes.auth);
 app.use("/api/v1/dashboard", Routes.dashboard);
 app.use("/api/v1/sheet", Routes.sheet);
 app.use("/api/v1/admin", Routes.admin);
+
 
 models.Logo.findOne({ where: { id: 1 } })
   .then((logo) => {
