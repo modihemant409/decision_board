@@ -100,7 +100,7 @@ exports.signUp = async (req, res, next) => {
 
     const Email = await User.findOne({ where: { email: email } })
     if (Email) {
-      const error = new Error('Email or Phone already exist')
+      const error = new Error('Email already exist')
       error.statuscode = 409
       throw error
     } 
