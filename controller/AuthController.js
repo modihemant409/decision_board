@@ -160,10 +160,12 @@ exports.login = async (req, res, next) => {
       },
       config.get("JWT_key")
       )
+    user.access_token = token
+    await user.save()
 
     res.status(200).json({
       msg: "USER LOGGED IN SUCCESSFULLY",
-      token: token,
+      data: user,
       status: true,
     })
   }
