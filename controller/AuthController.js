@@ -110,7 +110,7 @@ exports.signUp = async (req, res, next) => {
       password: password, 
     });
     res.json({
-      msg: "New User Created",
+      message: "New User Created",
       status: true,
       user:user
     })
@@ -145,12 +145,10 @@ exports.login = async (req, res, next) => {
 
     const doMatch = await bcrypt.compare(password, user.password)
     if (!doMatch) {
-      const error = new Error('Incorrect Password')
-      error.statuscode = 422
-      res.json({
-        msg: "Incorrect password"
+      return res.status(403).json({
+        message: "Incorrect password"
       })
-      throw error
+      
     }
 
     const token = jwt.sign(
