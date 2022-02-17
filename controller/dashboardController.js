@@ -268,7 +268,7 @@ exports.openSharedDashboard = async (req, res, next) => {
       });
       helper.dataNotFound(
         check,
-        "You cannot open thos dashboard as you haven't purchased any plan yet"
+        "You cannot open this dashboard as you haven't purchased any plan yet"
       );
     }
     const dashboard = await Dashboard.findOne({
@@ -302,7 +302,7 @@ exports.openSharedDashboard = async (req, res, next) => {
   }
 };
 
-exports.removeDashboard = (req, res, next) => {
+exports.removeDashboard = async (req, res, next) => {
   try {
     const dashboardId = req.params.dashboardId;
     await ArchiveDashboard.destroy({ where: { dashboardId: dashboardId } });
