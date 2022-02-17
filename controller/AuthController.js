@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const { User, userDb, UserPlan } = require("../models");
 const { OAuth2Client } = require("google-auth-library");
+const { removeFile } = require("../helper/File");
 const client = new OAuth2Client(process.env.GOOGLE_ID);
 
 exports.socialLogin = async (req, res, next) => {
@@ -175,29 +176,30 @@ exports.login = async (req, res, next) => {
   }
 }
 
-
 exports.editProfile = async (req, res, next) => {
-  const { name, email, image } = req.body
+  const { body, file } = await UploadFile(req, "images");
+  const { name, email, image } =  body
   try {
   const schema = joi.object({
       name: joi.string().min(3).required(),
       email:joi.email().required()
   }).options({ allowUnknown: true })
 
-  const { error } = schema.validate(req.body)
+  const { error } = schema.validate(body)
   if (error) {
       return res.status(400).send(error.details[0])
   }
-
-  if (req.file) {
-      image = req.file.path.replace("\\", "/")
+  
+  const data = await User.findOne({ where: { id: req.userId } })
+  if (file) {
+    image = file.path;
+    removeFile(user.image)
   }
-      const data = await User.findOne({ where: { id: req.userId } })
       // if (image !== data.image) {
       //     // clearImage(data.image)
       // }
-      const user = await data.update({ name: name, image: image, email: email })
-      res.status(200).json({ status: true, message: "User updated Successfully  ", user: user });
+      const user = await data.update({ name, image, email })
+      res.status(200).json({ status: true, message: "User updated Successfully  ", data:user });
   }
   catch (err) {
       if (!err.statusCode) {

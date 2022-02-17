@@ -11,6 +11,7 @@ const {
   UserPlan,
   SharedDashboard,
   User,
+  ChartLayout,
 } = require("../models");
 const { UploadFile, removeFile } = require("../helper/File");
 const helper = require("../helper/functions");
@@ -300,3 +301,24 @@ exports.openSharedDashboard = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.removeDashboard = (req, res, next) => {
+  try {
+    const dashboardId = req.params.dashboardId;
+    await ArchiveDashboard.destroy({ where: { dashboardId: dashboardId } });
+    await SharedDashboard.destroy({ where: { dashboardId: dashboardId } });
+    const sheets = await Sheet.findAll({ where: { dashboardId: dashboardId } });
+    const sheetIds = sheets.map(sheet => sheet.id);
+    await SheetData.destroy({ where: { sheetId: sheetIds } });
+    await SheetTab.destroy({ where: { sheetId: sheetIds } });
+    await Sheet.destroy({ where: { dashboardId: dashboardId } });
+    const tabs = await Tab.findAll({ where: { dashboardId: dashboardId } });
+    const tabIds = tabs.map(tab => tab.id)
+    await Chart.destroy({ where: { tabId: tabIds } });
+    await ChartLayout.destroy({ where: { tabId: tabIds } });
+    await Tab.destroy({ where: { dashboardId: dashboardId } });
+    await Dashboard.destroy({ where: { id: dashboardId } });
+  } catch (error) {
+    next(error)
+  }
+}

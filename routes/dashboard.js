@@ -6,6 +6,7 @@ const { DashboardController } = require("../controller");
 
 router.post("/addLogo", auth, DashboardController.addLogo);
 router.delete("/deleteLogo", auth, DashboardController.deleteLogo);
+router.delete("/remove-dashboard/:dashboardId", auth, DashboardController.removeDashboard);
 router.get("/getLogo", auth, DashboardController.getLogos);
 router.post(
   "/createDashboard",
